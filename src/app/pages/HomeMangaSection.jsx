@@ -3,11 +3,11 @@ import React, { useState } from "react";
 import { Select, SelectItem, Spinner } from "@nextui-org/react";
 import { FaHashtag} from 'react-icons/fa'
 const SelectNumero = () => {
-  const [selectedNumero, setSelectedNumero] = useState("239");
+  const [selectedNumero, setSelectedNumero] = useState("240");
   const [isLoading, setIsLoading] = useState(false); 
 
   const numerosDescendentes = [];
-  for (let i = 239; i >= 238; i--) {
+  for (let i = 240; i >= 238; i--) {
     numerosDescendentes.push(i.toString());
   }
 
@@ -37,7 +37,7 @@ const SelectNumero = () => {
           placeholder="Selecciona un número"
           value={selectedNumero}
           onChange={handleSelectChange}
-          defaultSelectedKeys={["239"]}
+          defaultSelectedKeys={["240"]}
           startContent={<FaHashtag />}
           className="max-w-xs"
         >
