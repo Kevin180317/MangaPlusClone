@@ -1,31 +1,37 @@
 "use client";
 import React, { useState } from "react";
 import { Select, SelectItem, Spinner } from "@nextui-org/react";
-import { FaHashtag} from 'react-icons/fa'
+import { FaHashtag } from 'react-icons/fa';
+
 const SelectNumero = () => {
   const [selectedNumero, setSelectedNumero] = useState("240");
-  const [isLoading, setIsLoading] = useState(false); 
+  const [isLoading, setIsLoading] = useState(false);
 
-  const numerosDescendentes = [];
-  for (let i = 240; i >= 238; i--) {
-    numerosDescendentes.push(i.toString());
-  }
+  const capitulos = [
+    { id: "240", imagenes: 20 },
+    { id: "239", imagenes: 19 },
+    { id: "238", imagenes: 19 }
+  ];
 
   const handleSelectChange = (event) => {
     const numeroSeleccionado = event.target.value;
 
-    setIsLoading(true); 
+    setIsLoading(true);
 
     setTimeout(() => {
       setSelectedNumero(numeroSeleccionado);
-      setIsLoading(false); 
+      setIsLoading(false);
       console.log(`Número seleccionado: ${numeroSeleccionado}`);
     }, 1000);
   };
 
   const imagenesDisponibles = (numero) => {
-
     return numero !== "1";
+  };
+
+  const getImagenesCount = (numero) => {
+    const capitulo = capitulos.find(cap => cap.id === numero);
+    return capitulo ? capitulo.imagenes : 0;
   };
 
   return (
@@ -41,14 +47,14 @@ const SelectNumero = () => {
           startContent={<FaHashtag />}
           className="max-w-xs"
         >
-          {numerosDescendentes.map((numero) => (
-            <SelectItem key={numero} value={numero}>
-              {numero}
+          {capitulos.map((capitulo) => (
+            <SelectItem key={capitulo.id} value={capitulo.id}>
+              {capitulo.id}
             </SelectItem>
           ))}
         </Select>
       </div>
-      {isLoading ? ( 
+      {isLoading ? (
         <div className="flex justify-center mt-4">
           <Spinner color="primary" labelColor="primary" />
         </div>
@@ -56,12 +62,12 @@ const SelectNumero = () => {
         <>
           {imagenesDisponibles(selectedNumero) ? (
             <div className="flex flex-col items-center justify-center space-y-4">
-              {Array.from({ length: 19 }, (_, index) => (
+              {Array.from({ length: getImagenesCount(selectedNumero) }, (_, index) => (
                 <img
                   key={index}
-                  src={`/${selectedNumero}/pagina${index}.jpg`}
+                  src={`/${selectedNumero}/pagina${index}.jpg`} 
                   alt={`Página ${selectedNumero}`}
-                  className="max-w-full mt-4"
+                  className="w-[100vh] mt-4"
                 />
               ))}
             </div>
