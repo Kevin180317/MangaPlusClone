@@ -6,6 +6,12 @@ const inter = Roboto_Mono({ subsets: ["latin"] });
 export const metadata = {
   title: "Jujutsu Kaisen Manga",
   description: "Se distribuye los leaks de jujutsu kaisen de una forma mas dinamica",
+  manifest: "/manifest.json",
+  icons : {
+    appleIcon : "/icon.png",
+  },
+  themeColor: "#000000",
+
 };
 
 export default function RootLayout({ children }) {

@@ -4,7 +4,7 @@ import { Select, SelectItem, Spinner } from "@nextui-org/react";
 import { FaHashtag } from 'react-icons/fa';
 
 const SelectNumero = () => {
-  const [selectedNumero, setSelectedNumero] = useState("240");
+  const [selectedNumero, setSelectedNumero] = useState();
   const [isLoading, setIsLoading] = useState(false);
 
   const capitulos = [
